@@ -5,7 +5,7 @@ declare namespace XMLSourceLoader {
         tagName: string;
         children: Array<Element>;
         attributes: {
-          [attributeName: string]: string | number;
+          [attributeName: string]: any;
         };
       };
 }

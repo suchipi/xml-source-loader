@@ -11,9 +11,9 @@ The JSON format that the XML gets converted into can be described using this typ
 ```ts
 interface Element {
   tagName: string;
-  children: Array<Element | string>;
+  children: Array<Element>;
   attributes: {
-    [attributeName: string]: string | number;
+    [attributeName: string]: any;
   };
 }
 ```
