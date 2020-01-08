@@ -76,10 +76,17 @@ function handleNode(node) {
     }
   }
 
+  const attrsObjectExpression = t.objectExpression([]);
   for (const key of Object.keys(properties)) {
     const value = properties[key];
-    el.properties.push(t.objectProperty(t.stringLiteral(key), value));
+    attrsObjectExpression.properties.push(
+      t.objectProperty(t.stringLiteral(key), value)
+    );
   }
+
+  el.properties.push(
+    t.objectProperty(t.identifier("attributes"), attrsObjectExpression)
+  );
 
   const children = Array.from(node.childNodes || []);
 

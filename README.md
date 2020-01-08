@@ -1,20 +1,20 @@
-# `tiled-loader`
+# `xml-source-loader`
 
-This is a webpack loader that loads XML tile maps and tile sets from [Tiled](https://www.mapeditor.org/).
+This is a webpack loader that loads XML files and requires any dependencies they have, as specified via a `"source"` node attribute.
 
-It marshals the XML into a JSON format, and `require`s any `image` or `tileset` nodes with a `source` attribute, so that they go through webpack's normal loading mechanism (eg `file-loader`).
+It marshals the XML into a JSON format, and for any nodes with a `source` attribute, it will wrap that attribute with a `require` so that it will get loaded through webpack's normal loading mechanism (eg `file-loader`).
+
+It was designed to be compatible with the XML format produced by [Tiled](https://www.mapeditor.org/).
 
 The JSON format that the XML gets converted into can be described using this type:
 
 ```ts
 interface Element {
   tagName: string;
-
-  // Child elements and text nodes
   children: Array<Element | string>;
-
-  // Element attributes are converted into object properties
-  [attributeName: string]: string | number;
+  attributes: {
+    [attributeName: string]: string | number;
+  };
 }
 ```
 
@@ -28,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.xml$/i,
-        use: ["tiled-loader"],
+        use: ["xml-source-loader"],
       },
     ],
   },

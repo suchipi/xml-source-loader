@@ -1,7 +1,11 @@
-declare namespace TiledLoader {
-  interface Element {
-    tagName: string;
-    children: Array<Element | string>;
-    [attributeName: string]: string | number;
-  }
+declare namespace XMLSourceLoader {
+  type Element =
+    | string
+    | {
+        tagName: string;
+        children: Array<Element>;
+        attributes: {
+          [attributeName: string]: string | number;
+        };
+      };
 }
