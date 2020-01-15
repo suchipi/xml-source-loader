@@ -3,7 +3,7 @@ declare namespace XMLSourceLoader {
     | string
     | {
         tagName: string;
-        children: Array<Element>;
+        children?: Array<Element>;
         attributes: {
           [attributeName: string]: any;
         };
