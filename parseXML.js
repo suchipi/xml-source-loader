@@ -1,7 +1,7 @@
 const template = require("@babel/template").default;
 const generate = require("@babel/generator").default;
 const t = require("@babel/types");
-const DOMParser = require("xmldom").DOMParser;
+const DOMParser = require("@xmldom/xmldom").DOMParser;
 
 const makeProgram = template(`
   module.exports = EXPORTS;
